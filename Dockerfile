@@ -23,7 +23,7 @@ RUN echo "deb https://dl.bintray.com/sbt/debian /" |  tee -a /etc/apt/sources.li
 		apt-get install -y sbt && \
 		apt-get clean
 		
-RUN mkdir /opt
+RUN mkdir -p /opt
 
 RUN cd /opt && \
     wget https://github.com/google/protobuf/archive/v2.5.0.tar.gz && \
@@ -57,6 +57,6 @@ RUN cd /opt && \
 ENV PATH /opt/spark/bin:$PATH
 ENV SPARK_HOME /opt/spark
 
-RUN /opt/spark/instrumentation-benchmarks/GroupBy && \
+RUN cd /opt/spark/instrumentation-benchmarks/GroupBy && \
     sbt package
 		
